@@ -16,7 +16,7 @@ class _SlashScreenPageState extends State<SlashScreenPage> {
     super.initState();
 
     Timer(
-      const Duration(seconds: 2),
+      const Duration(seconds: 1),
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomePage()),
@@ -26,9 +26,10 @@ class _SlashScreenPageState extends State<SlashScreenPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("TourKuy", style: TextStyle(
-      fontSize: 32,
-      fontWeight: FontWeight.w600
-    ),));
+    return const Center(
+        child: Text(
+      "TourKuy",
+      style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
+    ));
   }
 }

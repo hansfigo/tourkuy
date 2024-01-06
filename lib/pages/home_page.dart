@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tourkuy/components/card.dart';
+import 'package:tourkuy/interface/attraction.dart';
 import 'package:tourkuy/utils/firebase/firebase.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,36 +36,42 @@ class _HomePageState extends State<HomePage> {
     return json.decode(data);
   }
 
-  Future<List<Map<String, dynamic>>> fetchWisataFromFirestore() async {
+  Future<List<Attraction>> fetchWisataFromFirestore() async {
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
         await db.collection('wisata').get();
 
-    return querySnapshot.docs.map((doc) => doc.data()).toList();
+    return querySnapshot.docs.map((doc) {
+      Map<String, dynamic> data = doc.data();
+      return Attraction.fromFirestore(data);
+    }).toList();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Tourkuy")),
-      body: FutureBuilder(
-        future: fetchWisataFromFirestore(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            List? attractionList = snapshot.data;
-            return AttractionList(attractionList: [attractionList]);
-          } else if (snapshot.hasError) {
-            return Text("Error Occurred: ${snapshot.error}");
-          } else {
-            return const CircularProgressIndicator();
-          }
-        },
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: FutureBuilder(
+          future: fetchWisataFromFirestore(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<Attraction> attractionList = snapshot.data!;
+              return AttractionList(attractionList: attractionList);
+            } else if (snapshot.hasError) {
+              return Text("Error Occurred: ${snapshot.error}");
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
       ),
     );
   }
 }
 
 class AttractionList extends StatelessWidget {
-  final List<dynamic> attractionList;
+  final List<Attraction> attractionList;
 
   const AttractionList({super.key, required this.attractionList});
 
@@ -78,7 +85,7 @@ class AttractionList extends StatelessWidget {
       ),
       itemCount: attractionList.length,
       itemBuilder: (context, index) {
-        return const CardExample();
+        return CardExample(attraction: attractionList[index]);
       },
     );
   }

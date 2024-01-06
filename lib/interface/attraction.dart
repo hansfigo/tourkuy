@@ -17,15 +17,15 @@ class Attraction {
     required this.rating,
   });
 
-  factory Attraction.fromJson(Map<String, dynamic> json) {
+  factory Attraction.fromFirestore(Map<String, dynamic> data) {
     return Attraction(
-      description: json['description'],
-      thumbnail: json['thumbnail'],
-      images: List<String>.from(json['image']),
-      name: json['name'],
-      category: json['kategori'],
-      location: json['location'],
-      rating: json['rating'].toDouble(),
+      description: data['description'] ?? '',
+      thumbnail: data['Thumbnail'] ?? '',
+      images: List<String>.from(data['image'] ?? []),
+      name: data['name'] ?? '',
+      category: data['category'] ?? '',
+      location: data['location'] ?? '',
+      rating: double.parse(data['rating'] ?? 0.0),
     );
   }
 }
