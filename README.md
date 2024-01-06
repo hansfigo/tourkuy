@@ -1,6 +1,6 @@
-# tourkuy
+# Tourkuy
 
-A new Flutter project.
+ "TourKuy" is a mobile-based tour guide application that provides information, guidance, and explanations about tourism, culture, and typical local business products in Indonesia. With the hope that this application can help foreign or local tourists in determining which tours to visit, the right budget, as well as complete history related to the tourist attractions.
 
 ## Getting Started
 
