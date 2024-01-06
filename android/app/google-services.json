@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "501915864006",
+    "project_id": "tourkuy-b3db9",
+    "storage_bucket": "tourkuy-b3db9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501915864006:android:31e98de472ac6f21ad80c7",
+        "android_client_info": {
+          "package_name": "com.example.tourkuy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk9Ov5340oQ5BgnHlW49A9diPuH2-Eb3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

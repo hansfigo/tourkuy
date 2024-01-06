@@ -16,32 +16,19 @@ class _SlashScreenPageState extends State<SlashScreenPage> {
     super.initState();
 
     Timer(
-      Duration(seconds: 2),
+      const Duration(seconds: 2),
       () => Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: const Text("TourKuy", style: TextStyle(
+    return const Center(child: Text("TourKuy", style: TextStyle(
       fontSize: 32,
       fontWeight: FontWeight.w600
     ),));
   }
 }
-
-// class SlashScreenPage extends StatelessWidget {
-//   const SlashScreenPage({super.key});
-
-//   @override
-//   void initState(){
-
-//   }
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Text("Splash Screen");
-//   }
-// }
