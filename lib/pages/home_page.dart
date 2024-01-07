@@ -4,23 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourkuy/components/bottom_navigation.dart';
 import 'package:tourkuy/components/card.dart';
 import 'package:tourkuy/interface/attraction.dart';
-import 'package:tourkuy/main.dart';
+import 'package:tourkuy/providers/bottom_navigation_provider.dart';
 import 'package:tourkuy/utils/firebase/firebase.dart';
-
-// class HomePage extends ConsumerStatefulWidget {
-//   const HomePage({super.key});
-
-//   @override
-//   ConsumerState<ConsumerStatefulWidget> createState() => _HomePageState();
-// }
-
-// class _HomePageState extends ConsumerState<HomePage> {
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -44,7 +29,8 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text("Tourkuy")),
-        body: _widgetOptions.elementAt(ref.watch(selectedIndexProvider).state),
+        body:
+            _widgetOptions.elementAt(ref.watch(bottomNavigationProvider).state),
         bottomNavigationBar: const MyBottomNavigation());
   }
 }

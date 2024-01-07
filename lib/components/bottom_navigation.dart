@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tourkuy/main.dart';
+import 'package:tourkuy/providers/bottom_navigation_provider.dart';
 
 class MyBottomNavigation extends ConsumerWidget {
   const MyBottomNavigation({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final int selectedIndex = ref.watch(selectedIndexProvider).state;
+    final int selectedIndex = ref.watch(bottomNavigationProvider).state;
 
     void onItemTapped(int index) {
-      ref.read(selectedIndexProvider).set(index);
+      ref.read(bottomNavigationProvider).set(index);
     }
 
     return BottomNavigationBar(
