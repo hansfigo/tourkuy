@@ -1,4 +1,4 @@
-class Attraction {
+class TouristSpot {
   String description;
   String thumbnail;
   List<String> images;
@@ -7,7 +7,7 @@ class Attraction {
   String location;
   double rating;
 
-  Attraction({
+  TouristSpot({
     required this.description,
     required this.thumbnail,
     required this.images,
@@ -17,15 +17,15 @@ class Attraction {
     required this.rating,
   });
 
-  factory Attraction.fromFirestore(Map<String, dynamic> data) {
-    return Attraction(
+  factory TouristSpot.fromFirestore(Map<String, dynamic> data) {
+    return TouristSpot(
       description: data['description'] ?? '',
       thumbnail: data['Thumbnail'] ?? '',
       images: List<String>.from(data['image'] ?? []),
       name: data['name'] ?? '',
       category: data['category'] ?? '',
       location: data['location'] ?? '',
-      rating: double.parse(data['rating'] ?? 0.0),
+      rating: data['rating'] ?? 0.0,
     );
   }
 }

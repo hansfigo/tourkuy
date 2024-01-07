@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tourkuy/interface/attraction.dart';
+import 'package:tourkuy/pages/tourist_spot_detail_page.dart';
 
 class CardExample extends StatelessWidget {
-  final Attraction attraction;
+  final TouristSpot attraction;
 
   static const cardHeight = 300.0;
 
@@ -10,8 +11,16 @@ class CardExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
+    return InkWell(
+      onTap: () {
+        // Implementasikan navigasi ke halaman lain di sini
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => TouristSpotDetailPage(attraction: attraction),
+          ),
+        );
+      },
       child: SizedBox(
         height: cardHeight,
         width: 100,
@@ -19,12 +28,12 @@ class CardExample extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(
-              height: cardHeight * 0.2,
+              height: cardHeight * 0.4,
               width: 20,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12.0),
                 child: Image.network(
-                  attraction.images[2],
+                  "https://images.unsplash.com/photo-1621155346337-1d19476ba7d6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGltYWdlfGVufDB8fDB8fHww",
                   fit: BoxFit.cover,
                 ),
               ),
