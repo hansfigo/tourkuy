@@ -4,6 +4,18 @@ import 'package:tourkuy/pages/spash_screen_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tourkuy/utils/firebase/firebase_options.dart';
 
+class SelectedIndex extends ChangeNotifier {
+  int state = 0;
+
+  void set(int index) {
+    state = index;
+    notifyListeners();
+  }
+}
+
+final selectedIndexProvider =
+    ChangeNotifierProvider<SelectedIndex>((ref) => SelectedIndex());
+
 Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

@@ -7,12 +7,14 @@ class TouristSpotDetailPage extends StatefulWidget {
   const TouristSpotDetailPage({super.key, required this.attraction});
 
   @override
-  _TouristSpotDetailPageState createState() => _TouristSpotDetailPageState();
+  State<TouristSpotDetailPage> createState() => _TouristSpotDetailPageState();
 }
 
 class _TouristSpotDetailPageState extends State<TouristSpotDetailPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Text(widget.attraction.name));
+    return Scaffold(
+      body: Text(widget.attraction.name),
+    );
   }
 }

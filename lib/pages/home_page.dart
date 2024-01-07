@@ -1,17 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tourkuy/components/bottom_navigation.dart';
 import 'package:tourkuy/components/card.dart';
 import 'package:tourkuy/interface/attraction.dart';
+import 'package:tourkuy/main.dart';
 import 'package:tourkuy/utils/firebase/firebase.dart';
 
-class HomePage extends StatefulWidget {
+// class HomePage extends ConsumerStatefulWidget {
+//   const HomePage({super.key});
+
+//   @override
+//   ConsumerState<ConsumerStatefulWidget> createState() => _HomePageState();
+// }
+
+// class _HomePageState extends ConsumerState<HomePage> {
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }
+
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   static const List<Widget> _widgetOptions = <Widget>[
     TouristSpotListWidget(),
     Text(
@@ -22,39 +40,12 @@ class _HomePageState extends State<HomePage> {
     ),
   ];
 
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Tourkuy")),
-      body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
-    );
+        appBar: AppBar(title: const Text("Tourkuy")),
+        body: _widgetOptions.elementAt(ref.watch(selectedIndexProvider).state),
+        bottomNavigationBar: const MyBottomNavigation());
   }
 }
 
