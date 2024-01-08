@@ -45,9 +45,27 @@ class AttractionList extends StatelessWidget {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: 6,
-      padding: EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       itemBuilder: (context, index) {
-        return CardExample(attraction: attractionList[1]);
+        if (index == 0) {
+          return Row(
+            children: [
+              const SizedBox(
+                width: 16,
+              ),
+              CardExample(attraction: attractionList[2]),
+            ],
+          );
+        } else {
+          return Row(
+            children: [
+              const SizedBox(
+                width: 16,
+              ),
+              CardExample(attraction: attractionList[2]),
+            ],
+          );
+        }
       },
     );
   }
