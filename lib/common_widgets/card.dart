@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tourkuy/interface/attraction.dart';
-import 'package:tourkuy/pages/tourist_spot_detail_page.dart';
+import 'package:tourkuy/pages/tourist_spot_detail/tourist_spot_detail_page.dart';
 
 class CardExample extends StatelessWidget {
   final TouristSpot attraction;

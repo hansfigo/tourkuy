@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:tourkuy/pages/home_page.dart';
+import 'package:tourkuy/pages/main_page.dart';
 
 class SlashScreenPage extends StatefulWidget {
   const SlashScreenPage({super.key});
@@ -19,7 +19,7 @@ class _SlashScreenPageState extends State<SlashScreenPage> {
       const Duration(seconds: 1),
       () => Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => const MainPage()),
       ),
     );
   }

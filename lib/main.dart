@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tourkuy/pages/spash_screen_page.dart';
+import 'package:tourkuy/pages/splash_screen/spash_screen_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tourkuy/utils/firebase/firebase_options.dart';
 

@@ -1,39 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tourkuy/components/bottom_navigation.dart';
-import 'package:tourkuy/components/card.dart';
+import 'package:tourkuy/common_widgets/card.dart';
 import 'package:tourkuy/interface/attraction.dart';
-import 'package:tourkuy/providers/bottom_navigation_provider.dart';
 import 'package:tourkuy/utils/firebase/firebase.dart';
-
-class HomePage extends ConsumerStatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _HomePageState();
-}
-
-class _HomePageState extends ConsumerState<HomePage> {
-  static const List<Widget> _widgetOptions = <Widget>[
-    TouristSpotListWidget(),
-    Text(
-      'Index 1: Profile',
-    ),
-    Text(
-      'Index 2: School',
-    ),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: const Text("Tourkuy")),
-        body:
-            _widgetOptions.elementAt(ref.watch(bottomNavigationProvider).state),
-        bottomNavigationBar: const MyBottomNavigation());
-  }
-}
 
 class TouristSpotListWidget extends StatelessWidget {
   const TouristSpotListWidget({super.key});
@@ -73,15 +42,12 @@ class AttractionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 2,
-        mainAxisSpacing: 2,
-      ),
-      itemCount: attractionList.length,
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: 6,
+      padding: EdgeInsets.symmetric(horizontal: 8),
       itemBuilder: (context, index) {
-        return CardExample(attraction: attractionList[index]);
+        return CardExample(attraction: attractionList[1]);
       },
     );
   }

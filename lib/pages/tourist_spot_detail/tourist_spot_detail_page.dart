@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourkuy/common_widgets/bottom_navigation.dart';
 import 'package:tourkuy/interface/attraction.dart';
 
 class TouristSpotDetailPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class _TouristSpotDetailPageState extends State<TouristSpotDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Text(widget.attraction.name),
+      bottomNavigationBar: const MyBottomNavigation(),
     );
   }
 }

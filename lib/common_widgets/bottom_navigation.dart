@@ -29,7 +29,7 @@ class MyBottomNavigation extends ConsumerWidget {
         ),
       ],
       currentIndex: selectedIndex,
-      selectedItemColor: Colors.amber[800],
+      selectedItemColor: const Color.fromARGB(255, 6, 196, 158),
       onTap: onItemTapped,
     );
   }
