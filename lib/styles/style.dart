@@ -28,4 +28,23 @@ class AppStyles {
     fontSize: smallFontSize,
     color: textColor,
   );
+
+  static final inputTextStyle = InputDecoration(
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.0),
+      borderSide: const BorderSide(
+        color: Color.fromARGB(255, 195, 195, 195),
+        width: 0.8,
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.0),
+      borderSide: const BorderSide(color: AppStyles.primaryColor),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.0),
+      borderSide: const BorderSide(color: Colors.red),
+    ),
+    isDense: true,
+  );
 }

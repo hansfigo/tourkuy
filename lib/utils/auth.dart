@@ -23,7 +23,8 @@ class Auth {
     }
   }
 
-  static Future<void> signUp(String emailAddress, String password) async {
+  static Future<void> signUp(
+      String username, String emailAddress, String password) async {
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -32,7 +33,7 @@ class Auth {
       );
       final user = credential.user;
 
-      await user?.updateDisplayName("Jane Q. User");
+      await user?.updateDisplayName(username);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');

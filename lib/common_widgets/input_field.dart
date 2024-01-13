@@ -20,30 +20,19 @@ class InputField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(labelText),
+        Text(
+          labelText,
+          style: const TextStyle(color: AppStyles.primaryColor),
+        ),
         const SizedBox(height: 6),
         TextFormField(
-          controller: controller,
-          obscureText: obscureText,
-          validator: validator,
-          style: const TextStyle(
-            fontSize: 12, // Set your desired font size
-          ),
-          decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderRadius:
-                  BorderRadius.circular(12.0), // Set your desired border radius
-              borderSide: const BorderSide(
-                color: Color.fromARGB(255, 195, 195, 195),
-                width: 0.8,
-              ),
+            controller: controller,
+            obscureText: obscureText,
+            validator: validator,
+            style: const TextStyle(
+              fontSize: 12,
             ),
-            isDense: true,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: AppStyles.primaryColor),
-            ),
-          ),
-        )
+            decoration: AppStyles.inputTextStyle)
       ],
     );
   }

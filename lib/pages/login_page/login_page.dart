@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
     ),
   );
   final _formKey = GlobalKey<FormState>();
-
+  bool isLoading = false;
   String errorMsg = '';
 
   TextEditingController emailController = TextEditingController();
@@ -105,26 +105,45 @@ class _LoginPageState extends State<LoginPage> {
                         height: 28,
                       ),
                       ElevatedButton(
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            try {
-                              await Auth.signIn(
-                                  emailController.text, emailController.text);
+                        onPressed: isLoading
+                            ? null
+                            : () async {
+                                if (_formKey.currentState!.validate()) {
+                                  try {
+                                    // Set isLoading true saat proses login dimulai
+                                    setState(() {
+                                      isLoading = true;
+                                    });
 
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Berhasil Login')),
-                              );
+                                    await Auth.signIn(emailController.text,
+                                        emailController.text);
 
-                              goTo(context, const HomePage());
-                            } on AuthenticationException catch (e) {
-                              setState(() {
-                                errorMsg = e.message;
-                              });
-                            }
-                          }
-                        },
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text('Berhasil Login')),
+                                    );
+
+                                    goTo(context, const HomePage());
+                                  } on AuthenticationException catch (e) {
+                                    setState(() {
+                                      errorMsg = e.message;
+                                    });
+                                  } finally {
+                                    // Set isLoading false setelah proses login selesai (berhasil atau gagal)
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                  }
+                                }
+                              },
                         style: buttonStyle,
-                        child: const Text('Sign In'),
+                        child: isLoading
+                            ? const SizedBox(
+                                height: 24,
+                                width: 24,
+                                child:
+                                    CircularProgressIndicator()) // Menampilkan spinner jika isLoading true
+                            : const Text('Sign In'),
                       ),
                     ],
                   ),
