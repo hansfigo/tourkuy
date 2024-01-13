@@ -7,7 +7,7 @@ import 'package:tourkuy/utils/auth.dart';
 import 'package:tourkuy/utils/goto.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  const RegisterPage({super.key});
 
   @override
   _RegisterPageState createState() => _RegisterPageState();

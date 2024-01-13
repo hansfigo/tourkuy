@@ -40,7 +40,7 @@ class MyBottomNavigation extends ConsumerWidget {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 2,
             blurRadius: 7,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -62,7 +62,7 @@ class MyBottomNavigation extends ConsumerWidget {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         currentIndex: selectedIndex,
-        unselectedItemColor: Color.fromARGB(255, 184, 184, 184),
+        unselectedItemColor: const Color.fromARGB(255, 184, 184, 184),
         selectedItemColor: Colors.white,
         onTap: onItemTapped,
         elevation: 0, // Menghilangkan shadow bawaan dari BottomNavigationBar

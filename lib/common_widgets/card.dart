@@ -3,12 +3,11 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:tourkuy/interface/attraction.dart';
 import 'package:tourkuy/pages/login_page/login_page.dart';
 import 'package:tourkuy/pages/tourist_spot_detail/tourist_spot_detail_page.dart';
+import 'package:tourkuy/styles/style.dart';
 import 'package:tourkuy/utils/goto.dart';
 
 class CardExample extends StatelessWidget {
   final TouristSpot attraction;
-
-  static const cardHeight = 300.0;
 
   const CardExample({super.key, required this.attraction});
 
@@ -16,7 +15,6 @@ class CardExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Implementasikan navigasi ke halaman lain di sini
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -25,8 +23,7 @@ class CardExample extends StatelessWidget {
         );
       },
       child: SizedBox(
-        height: cardHeight,
-        width: 100,
+        width: 160,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -34,9 +31,12 @@ class CardExample extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6.0),
                 child: Stack(
                   children: [
-                    Image.network(
-                      "https://images.unsplash.com/photo-1621155346337-1d19476ba7d6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGltYWdlfGVufDB8fDB8fHww",
-                      fit: BoxFit.cover,
+                    SizedBox(
+                      height: 140,
+                      child: Image.network(
+                        "https://images.unsplash.com/photo-1621155346337-1d19476ba7d6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGltYWdlfGVufDB8fDB8fHww",
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     Positioned(
                       top: 10.0,
@@ -64,22 +64,7 @@ class CardExample extends StatelessWidget {
                       style: const TextStyle(
                           fontSize: 12, fontWeight: FontWeight.w600),
                     ),
-                    RatingBar.builder(
-                      itemSize: 12,
-                      initialRating: attraction.rating,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemPadding: const EdgeInsets.only(right: 2.0),
-                      itemBuilder: (context, _) => const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      onRatingUpdate: (rating) {
-                        print(rating);
-                      },
-                    ),
+                    RatingStar(rating: attraction.rating),
                     Text(
                       attraction.location,
                       style: const TextStyle(
@@ -95,6 +80,32 @@ class CardExample extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class RatingStar extends StatelessWidget {
+  const RatingStar({super.key, required this.rating});
+
+  final double rating;
+
+  @override
+  Widget build(BuildContext context) {
+    return RatingBar.builder(
+      itemSize: 12,
+      initialRating: rating,
+      minRating: 1,
+      direction: Axis.horizontal,
+      allowHalfRating: true,
+      itemCount: 5,
+      itemPadding: const EdgeInsets.only(right: 2.0),
+      itemBuilder: (context, _) => const Icon(
+        Icons.star,
+        color: AppStyles.primaryColor,
+      ),
+      onRatingUpdate: (rating) {
+        print(rating);
+      },
     );
   }
 }

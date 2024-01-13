@@ -42,31 +42,33 @@ class AttractionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: 6,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      itemBuilder: (context, index) {
-        if (index == 0) {
-          return Row(
-            children: [
-              const SizedBox(
-                width: 16,
-              ),
-              CardExample(attraction: attractionList[2]),
-            ],
-          );
-        } else {
-          return Row(
-            children: [
-              const SizedBox(
-                width: 16,
-              ),
-              CardExample(attraction: attractionList[2]),
-            ],
-          );
-        }
-      },
+    return Expanded(
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 6,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return Row(
+              children: [
+                const SizedBox(
+                  width: 16,
+                ),
+                CardExample(attraction: attractionList[2]),
+              ],
+            );
+          } else {
+            return Row(
+              children: [
+                const SizedBox(
+                  width: 16,
+                ),
+                CardExample(attraction: attractionList[2]),
+              ],
+            );
+          }
+        },
+      ),
     );
   }
 }

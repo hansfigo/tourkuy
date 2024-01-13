@@ -11,6 +11,7 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  final double sectionHeight = 250.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,11 +39,12 @@ class _HomePageState extends ConsumerState<HomePage> {
               const SizedBox(height: 40.0),
               SizedBox(
                 height: MediaQuery.of(context).size.height,
-                child: const Expanded(
+                child: Expanded(
                   child: Column(
                     children: [
-                      Expanded(
-                        child: Column(
+                      SizedBox(
+                        height: sectionHeight,
+                        child: const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
@@ -60,14 +62,15 @@ class _HomePageState extends ConsumerState<HomePage> {
                           ],
                         ),
                       ),
-                      Expanded(
-                        child: Column(
+                      SizedBox(
+                        height: sectionHeight,
+                        child: const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 24.0),
                               child: Text(
-                                'UMKM Sekitar Anda',
+                                'Jelajahi Sekitar anda',
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w800),
                               ),
@@ -79,25 +82,44 @@ class _HomePageState extends ConsumerState<HomePage> {
                           ],
                         ),
                       ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 24.0),
-                              child: Text(
-                                'Makanan Sekitar Anda',
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w800),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Expanded(child: TouristSpotListWidget()),
-                          ],
-                        ),
-                      ),
+                      // Expanded(
+                      //   child: Column(
+                      //     crossAxisAlignment: CrossAxisAlignment.start,
+                      //     children: [
+                      //       Padding(
+                      //         padding: EdgeInsets.symmetric(horizontal: 24.0),
+                      //         child: Text(
+                      //           'UMKM Sekitar Anda',
+                      //           style: TextStyle(
+                      //               fontSize: 18, fontWeight: FontWeight.w800),
+                      //         ),
+                      //       ),
+                      //       SizedBox(
+                      //         height: 8,
+                      //       ),
+                      //       Expanded(child: TouristSpotListWidget()),
+                      //     ],
+                      //   ),
+                      // ),
+                      // Expanded(
+                      //   child: Column(
+                      //     crossAxisAlignment: CrossAxisAlignment.start,
+                      //     children: [
+                      //       Padding(
+                      //         padding: EdgeInsets.symmetric(horizontal: 24.0),
+                      //         child: Text(
+                      //           'Makanan Sekitar Anda',
+                      //           style: TextStyle(
+                      //               fontSize: 18, fontWeight: FontWeight.w800),
+                      //         ),
+                      //       ),
+                      //       SizedBox(
+                      //         height: 8,
+                      //       ),
+                      //       Expanded(child: TouristSpotListWidget()),
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
