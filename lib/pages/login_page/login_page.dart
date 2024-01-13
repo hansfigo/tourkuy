@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tourkuy/common_widgets/input_field.dart';
+import 'package:tourkuy/pages/home/home_page.dart';
+import 'package:tourkuy/pages/register_page/register_page.dart';
 import 'package:tourkuy/styles/style.dart';
+import 'package:tourkuy/utils/auth.dart';
+import 'package:tourkuy/utils/goto.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -10,7 +14,18 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final buttonStyle = ElevatedButton.styleFrom(
+    backgroundColor: AppStyles.primaryColor,
+    foregroundColor: Colors.white,
+    padding: const EdgeInsets.all(16.0),
+    minimumSize: const Size(double.infinity, 48),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.0),
+    ),
+  );
   final _formKey = GlobalKey<FormState>();
+
+  String errorMsg = '';
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -21,86 +36,116 @@ class _LoginPageState extends State<LoginPage> {
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Hi Lets Explore the World",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
+                const Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Hi Lets Explore the World",
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
+                    ),
+                    Text(
+                      "Explore Beyond Boundaries with Ease",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
                 ),
-                Text(
-                  "Explore Beyond Boundaries with Ease",
-                  style: TextStyle(color: Colors.grey),
+                const SizedBox(
+                  height: 42,
+                ),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      InputField(
+                        labelText: "Email",
+                        controller: emailController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      InputField(
+                        labelText: "Password",
+                        obscureText: true,
+                        controller: passwordController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 14,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Visibility(
+                          visible: errorMsg.isNotEmpty,
+                          child: Text(
+                            errorMsg,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 28,
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            try {
+                              await Auth.signIn(
+                                  emailController.text, emailController.text);
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('Berhasil Login')),
+                              );
+
+                              goTo(context, const HomePage());
+                            } on AuthenticationException catch (e) {
+                              setState(() {
+                                errorMsg = e.message;
+                              });
+                            }
+                          }
+                        },
+                        style: buttonStyle,
+                        child: const Text('Sign In'),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-            const SizedBox(
-              height: 42,
-            ),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  InputField(
-                    labelText: "Email",
-                    controller: emailController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  InputField(
-                    labelText: "Password",
-                    obscureText: true,
-                    controller: passwordController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 28,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Validate returns true if the form is valid, or false otherwise.
-                      if (_formKey.currentState!.validate()) {
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                              content: Text('Email :${emailController.text}')),
-                        );
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: AppStyles
-                          .primaryColor, // Set your desired button color
-                      onPrimary: Colors.white, // Set text color to white
-                      padding:
-                          EdgeInsets.all(16.0), // Set padding for the button
-                      minimumSize:
-                          Size(double.infinity, 48), // Set width to full
-                      shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(8.0), // Set border radius
-                      ),
-                    ),
-                    child: const Text('Sign In'),
-                  ),
-                ],
-              ),
-            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Belum Punya akun ? ",
+                  style: TextStyle(color: AppStyles.lightGray),
+                ),
+                GestureDetector(
+                    onTap: () => goTo(context, const RegisterPage()),
+                    child: const Text(
+                      "Daftar",
+                      style: TextStyle(color: AppStyles.primaryColor),
+                    ))
+              ],
+            )
           ],
         ),
       ),

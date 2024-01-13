@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class AppStyles {
   // Warna
-  static const Color primaryColor = Color.fromARGB(255, 6, 196, 158);
+  static const Color primaryColor = Color.fromRGBO(6, 196, 158, 1);
   static const Color secondaryColor = Colors.green;
+  static const Color lightGray = Color.fromARGB(255, 174, 174, 174);
   static const Color textColor = Colors.black;
 
   // Ukuran Teks
