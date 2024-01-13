@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tourkuy/utils/firebase/firebase.dart';
 
 class AuthenticationException implements Exception {
   final String message;
@@ -12,14 +13,8 @@ class Auth {
       // ignore: unused_local_variable
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: emailAddress, password: password);
-    } catch (e) {
-      throw AuthenticationException('No user found for that email.');
-
-      // if (e.code == 'user-not-found') {
-      //   throw AuthenticationException('No user found for that email.');
-      // } else if (e.code == 'wrong-password') {
-      //   throw AuthenticationException('Wrong password provided.');
-      // }
+    } on FirebaseAuthException catch (e) {
+      throw AuthenticationException((e.code).toString());
     }
   }
 
@@ -31,17 +26,20 @@ class Auth {
         email: emailAddress,
         password: password,
       );
+
       final user = credential.user;
 
       await user?.updateDisplayName(username);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-      }
-    } catch (e) {
-      print(e);
+      throw AuthenticationException((e.code).toString());
+    }
+  }
+
+  static bool isUserSignIn() {
+    if (auth.currentUser == null) {
+      return false;
+    } else {
+      return true;
     }
   }
 }

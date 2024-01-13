@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tourkuy/common_widgets/input_field.dart';
 import 'package:tourkuy/pages/home/home_page.dart';
+import 'package:tourkuy/pages/login_page/login_page.dart';
 import 'package:tourkuy/styles/style.dart';
 import 'package:tourkuy/utils/auth.dart';
 import 'package:tourkuy/utils/goto.dart';
@@ -13,6 +14,16 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  @override
+  void initState() {
+    super.initState();
+    if (Auth.isUserSignIn()) {
+      Future.delayed(Duration.zero, () async {
+        goTo(context, const HomePage());
+      });
+    }
+  }
+
   final buttonStyle = ElevatedButton.styleFrom(
     backgroundColor: AppStyles.primaryColor,
     foregroundColor: Colors.white,
@@ -173,7 +184,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   style: TextStyle(color: AppStyles.lightGray),
                 ),
                 GestureDetector(
-                    onTap: () => goTo(context, const RegisterPage()),
+                    onTap: () => goTo(context, const LoginPage()),
                     child: const Text(
                       "Sign In",
                       style: TextStyle(color: AppStyles.primaryColor),

@@ -14,6 +14,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  @override
+  void initState() {
+    super.initState();
+    if (Auth.isUserSignIn()) {
+      Future.delayed(Duration.zero, () async {
+        goTo(context, const HomePage());
+      });
+    }
+  }
+
   final buttonStyle = ElevatedButton.styleFrom(
     backgroundColor: AppStyles.primaryColor,
     foregroundColor: Colors.white,
