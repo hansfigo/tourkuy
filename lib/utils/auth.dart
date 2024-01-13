@@ -21,8 +21,7 @@ class Auth {
   static Future<void> signUp(
       String username, String emailAddress, String password) async {
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final credential = await auth.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
       );
@@ -33,6 +32,10 @@ class Auth {
     } on FirebaseAuthException catch (e) {
       throw AuthenticationException((e.code).toString());
     }
+  }
+
+  static Future<void> signOut() async {
+    auth.signOut();
   }
 
   static bool isUserSignIn() {
