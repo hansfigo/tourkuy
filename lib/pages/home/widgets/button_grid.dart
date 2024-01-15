@@ -13,20 +13,13 @@ class ButtonGrid extends StatelessWidget {
       ),
       itemCount: 4, // Jumlah total item
       itemBuilder: (context, index) {
-        return ElevatedButton(
-          onPressed: () {
-            // Aksi yang akan dijalankan saat tombol ditekan
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0), // Radius border tombol
-            ),
-            padding: const EdgeInsets.all(8.0), // Padding tombol
-            minimumSize: const Size(0, 30), // Ukuran minimum tombol
+        return ButtonTheme(
+          minWidth: 100.0,
+          height: 50.0,
+          child: ElevatedButton(
+            onPressed: () {},
+            child: Text("test"),
           ),
-
-          child: Text('Button $index'), // Teks pada tombol
         );
       },
     );

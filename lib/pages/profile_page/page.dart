@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tourkuy/common_widgets/bottom_navigation.dart';
 import 'package:tourkuy/pages/login_page/page.dart';
+import 'package:tourkuy/pages/profile_page/widgets/outlined_button.dart';
+import 'package:tourkuy/pages/register_page/page.dart';
 import 'package:tourkuy/styles/style.dart';
 import 'package:tourkuy/utils/auth.dart';
 import 'package:tourkuy/utils/firebase/firebase.dart';
@@ -41,14 +43,26 @@ class _ProfilePageState extends State<ProfilePage> {
         body: Padding(
           padding: const EdgeInsets.all(8.0 * 2),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Profile"),
-              GestureDetector(
-                  onTap: () => goTo(context, const LoginPage()),
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(color: AppStyles.primaryColor),
-                  )),
+              const Text(
+                "Daftar untuk mulai planning trip anda.",
+                style: AppStyles.headingStyle,
+              ),
+              const SizedBox(
+                height: 18,
+              ),
+              MyOutlineButton(
+                text: "Daftar Akun",
+                onPressed: () => goTo(context, const RegisterPage()),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              MyOutlineButton(
+                text: "Masuk Akun",
+                onPressed: () => goTo(context, const LoginPage()),
+              )
             ],
           ),
         ),

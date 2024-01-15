@@ -25,19 +25,17 @@ class _HomePageState extends ConsumerState<HomePage> {
                   width: double.infinity,
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Jelajahi",
-                            style: TextStyle(
-                                fontSize: 42, fontWeight: FontWeight.w800),
-                          ),
-                          Expanded(child: ButtonGrid()),
-                        ],
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Jelajahi",
+                          style: TextStyle(
+                              fontSize: 42, fontWeight: FontWeight.w800),
+                        ),
+                        // Expanded(child: ButtonGrid()),
+                      ],
                     ),
                   )),
               const SizedBox(height: 40.0),
