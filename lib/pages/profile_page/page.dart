@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tourkuy/common_widgets/bottom_navigation.dart';
-import 'package:tourkuy/pages/login_page/login_page.dart';
+import 'package:tourkuy/pages/login_page/page.dart';
 import 'package:tourkuy/styles/style.dart';
 import 'package:tourkuy/utils/auth.dart';
 import 'package:tourkuy/utils/firebase/firebase.dart';

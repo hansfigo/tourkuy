@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:tourkuy/interface/attraction.dart';
-import 'package:tourkuy/pages/login_page/login_page.dart';
-import 'package:tourkuy/pages/tourist_spot_detail/tourist_spot_detail_page.dart';
+import 'package:tourkuy/pages/login_page/page.dart';
+import 'package:tourkuy/pages/tourist_spot_detail/page.dart';
 import 'package:tourkuy/styles/style.dart';
 import 'package:tourkuy/utils/goto.dart';
 

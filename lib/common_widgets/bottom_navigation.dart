@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tourkuy/pages/home/home_page.dart';
-import 'package:tourkuy/pages/profile_page/profile_page.dart';
-import 'package:tourkuy/pages/search_page/search_page.dart';
+import 'package:tourkuy/pages/home/page.dart';
+import 'package:tourkuy/pages/profile_page/page.dart';
+import 'package:tourkuy/pages/search_page/page.dart';
 import 'package:tourkuy/providers/bottom_navigation_provider.dart';
 import 'package:tourkuy/styles/style.dart';
 import 'package:tourkuy/utils/goto.dart';

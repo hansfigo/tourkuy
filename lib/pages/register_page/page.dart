@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:tourkuy/common_widgets/input_field.dart';
-import 'package:tourkuy/pages/home/home_page.dart';
-import 'package:tourkuy/pages/register_page/register_page.dart';
+import 'package:tourkuy/pages/home/page.dart';
+import 'package:tourkuy/pages/login_page/page.dart';
 import 'package:tourkuy/styles/style.dart';
 import 'package:tourkuy/utils/auth.dart';
 import 'package:tourkuy/utils/goto.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
@@ -37,6 +37,7 @@ class _LoginPageState extends State<LoginPage> {
   bool isLoading = false;
   String errorMsg = '';
 
+  TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -57,12 +58,12 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Hi Lets Explore the World",
+                      "Buat Akun Baru",
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
                     ),
                     Text(
-                      "Explore Beyond Boundaries with Ease",
+                      "Connecting Explorers to Endless Destinations",
                       style: TextStyle(color: Colors.grey),
                     ),
                   ],
@@ -74,6 +75,19 @@ class _LoginPageState extends State<LoginPage> {
                   key: _formKey,
                   child: Column(
                     children: [
+                      InputField(
+                        labelText: "Username",
+                        controller: usernameController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
                       InputField(
                         labelText: "Email",
                         controller: emailController,
@@ -125,7 +139,9 @@ class _LoginPageState extends State<LoginPage> {
                                       isLoading = true;
                                     });
 
-                                    await Auth.signIn(emailController.text,
+                                    await Auth.signUp(
+                                        usernameController.text,
+                                        emailController.text,
                                         emailController.text);
 
                                     ScaffoldMessenger.of(context).showSnackBar(
@@ -164,13 +180,13 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "Belum Punya akun ? ",
+                  "Sudah Punya Akun ? ",
                   style: TextStyle(color: AppStyles.lightGray),
                 ),
                 GestureDetector(
-                    onTap: () => goTo(context, const RegisterPage()),
+                    onTap: () => goTo(context, const LoginPage()),
                     child: const Text(
-                      "Daftar",
+                      "Sign In",
                       style: TextStyle(color: AppStyles.primaryColor),
                     ))
               ],

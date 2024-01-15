@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tourkuy/pages/home/home_page.dart';
+import 'package:tourkuy/pages/home/page.dart';
 
 class MainPage extends ConsumerStatefulWidget {
   const MainPage({super.key});

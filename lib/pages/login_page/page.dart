@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:tourkuy/common_widgets/input_field.dart';
-import 'package:tourkuy/pages/home/home_page.dart';
-import 'package:tourkuy/pages/login_page/login_page.dart';
+import 'package:tourkuy/pages/home/page.dart';
+import 'package:tourkuy/pages/register_page/page.dart';
 import 'package:tourkuy/styles/style.dart';
 import 'package:tourkuy/utils/auth.dart';
 import 'package:tourkuy/utils/goto.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
@@ -37,7 +37,6 @@ class _RegisterPageState extends State<RegisterPage> {
   bool isLoading = false;
   String errorMsg = '';
 
-  TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -58,12 +57,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Buat Akun Baru",
+                      "Hi Lets Explore the World",
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
                     ),
                     Text(
-                      "Connecting Explorers to Endless Destinations",
+                      "Explore Beyond Boundaries with Ease",
                       style: TextStyle(color: Colors.grey),
                     ),
                   ],
@@ -75,19 +74,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      InputField(
-                        labelText: "Username",
-                        controller: usernameController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
                       InputField(
                         labelText: "Email",
                         controller: emailController,
@@ -139,9 +125,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       isLoading = true;
                                     });
 
-                                    await Auth.signUp(
-                                        usernameController.text,
-                                        emailController.text,
+                                    await Auth.signIn(emailController.text,
                                         emailController.text);
 
                                     ScaffoldMessenger.of(context).showSnackBar(
@@ -180,13 +164,13 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "Sudah Punya Akun ? ",
+                  "Belum Punya akun ? ",
                   style: TextStyle(color: AppStyles.lightGray),
                 ),
                 GestureDetector(
-                    onTap: () => goTo(context, const LoginPage()),
+                    onTap: () => goTo(context, const RegisterPage()),
                     child: const Text(
-                      "Sign In",
+                      "Daftar",
                       style: TextStyle(color: AppStyles.primaryColor),
                     ))
               ],
