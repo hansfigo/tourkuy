@@ -34,7 +34,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           style: TextStyle(
                               fontSize: 42, fontWeight: FontWeight.w800),
                         ),
-                        // Expanded(child: ButtonGrid()),
+                        Expanded(child: ButtonGrid()),
                       ],
                     ),
                   )),

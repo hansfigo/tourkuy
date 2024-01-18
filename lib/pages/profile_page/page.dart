@@ -20,22 +20,43 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     if (Auth.isUserSignIn()) {
       return Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(8.0 * 2),
-            child: Column(
-              children: [
-                Text(auth.currentUser!.displayName!),
-                GestureDetector(
-                    onTap: () {
-                      Auth.signOut();
-                      goTo(context, const ProfilePage());
-                    },
-                    child: const Text(
-                      "SignOut",
-                      style: TextStyle(color: Colors.red),
-                    )),
-              ],
-            ),
+          body: Column(
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    height: 200,
+                    color: AppStyles.primaryColor,
+                  ),
+                  Positioned(
+                    left: 80,
+                    top: 150, // Sesuaikan nilai top sesuai kebutuhan
+                    child: CircleAvatar(
+                      backgroundColor: Colors.brown.shade800,
+                      child: const Text('AH'),
+                      minRadius: 90,
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0 * 2),
+                child: Column(
+                  children: [
+                    Text(auth.currentUser!.displayName!),
+                    GestureDetector(
+                        onTap: () {
+                          Auth.signOut();
+                          goTo(context, const ProfilePage());
+                        },
+                        child: const Text(
+                          "SignOut",
+                          style: TextStyle(color: Colors.red),
+                        )),
+                  ],
+                ),
+              ),
+            ],
           ),
           bottomNavigationBar: const MyBottomNavigation());
     }
