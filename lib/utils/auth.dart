@@ -38,6 +38,10 @@ class Auth {
     auth.signOut();
   }
 
+  static String getUserId() {
+    return auth.currentUser!.uid;
+  }
+
   static bool isUserSignIn() {
     if (auth.currentUser == null) {
       return false;

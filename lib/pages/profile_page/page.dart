@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tourkuy/common_widgets/bottom_navigation.dart';
 import 'package:tourkuy/pages/login_page/page.dart';
+import 'package:tourkuy/pages/profile_page/widgets/history_list.dart';
 import 'package:tourkuy/pages/profile_page/widgets/outlined_button.dart';
 import 'package:tourkuy/pages/register_page/page.dart';
 import 'package:tourkuy/styles/style.dart';
@@ -20,43 +21,89 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     if (Auth.isUserSignIn()) {
       return Scaffold(
-          body: Stack(
+          body: Column(
             children: [
-              Column(
-                children: [
-                  Container(
-                    height: 200,
-                    color: AppStyles.primaryColor,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16, top: 28),
-                    child: Column(
+              Container(
+                color: AppStyles.primaryColor,
+                child: Stack(
+                  children: [
+                    Column(
                       children: [
-                        Text(auth.currentUser!.displayName!),
-                        GestureDetector(
-                            onTap: () {
-                              Auth.signOut();
-                              goTo(context, const ProfilePage());
-                            },
-                            child: const Text(
-                              "SignOut",
-                              style: TextStyle(color: Colors.red),
-                            )),
+                        Container(
+                          height: 200,
+                        ),
+                        Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(30.0)),
+                          ),
+                          height: 200,
+                        )
+                      ],
+                    ),
+                    Positioned(
+                      left: MediaQuery.of(context).size.width / 2 - 90,
+                      top: 120,
+                      child: Column(
+                        children: [
+                          const CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                'https://i.pinimg.com/564x/11/8a/2c/118a2c9d4fb6f9837c0a2cd42c3a5d7c.jpg'),
+                            minRadius: 90,
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            auth.currentUser!.displayName!,
+                            style: const TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'History',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w800),
+                            ),
+                            BookmarkListWidget()
+                          ],
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.redAccent,
+                              ),
+                              onPressed: () => Auth.signOut(),
+                              child: const Text(
+                                "SignOut",
+                                style: TextStyle(color: Colors.white),
+                              )),
+                        )
                       ],
                     ),
                   ),
-                ],
-              ),
-              Positioned(
-                left: MediaQuery.of(context).size.width / 2 - 90,
-                top: 140, // Sesuaikan nilai top sesuai kebutuhan
-                child: const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://i.pinimg.com/564x/11/8a/2c/118a2c9d4fb6f9837c0a2cd42c3a5d7c.jpg'),
-                  minRadius: 90,
                 ),
-              ),
+              )
             ],
           ),
           bottomNavigationBar: const MyBottomNavigation());
