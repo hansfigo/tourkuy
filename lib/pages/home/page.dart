@@ -20,24 +20,32 @@ class _HomePageState extends ConsumerState<HomePage> {
           child: Column(
             children: [
               Container(
-                  color: const Color.fromARGB(255, 6, 196, 158),
-                  height: 200.0,
-                  width: double.infinity,
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 16.0, right: 16, top: 24),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Jelajahi",
-                          style: TextStyle(
-                              fontSize: 42, fontWeight: FontWeight.w800),
-                        ),
-                        // Expanded(child: ButtonGrid()),
-                      ],
-                    ),
-                  )),
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                        'assets/images/home-bg.png'), // Ganti dengan path gambar Anda
+                    fit: BoxFit.cover, // Atur sesuai kebutuhan Anda
+                  ),
+                ),
+                height: 240.0,
+                width: double.infinity,
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 16.0, right: 16, top: 24),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Jelajahi",
+                        style: TextStyle(
+                            fontSize: 42,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               const SizedBox(height: 40.0),
               SizedBox(
                 height: MediaQuery.of(context).size.height,

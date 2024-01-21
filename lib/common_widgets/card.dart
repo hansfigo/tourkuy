@@ -64,7 +64,7 @@ class CardExample extends StatelessWidget {
                       style: const TextStyle(
                           fontSize: 12, fontWeight: FontWeight.w600),
                     ),
-                    // RatingStar(rating: attraction.rating),
+                    RatingStar(rating: attraction.rating),
                     Text(
                       attraction.location,
                       style: const TextStyle(

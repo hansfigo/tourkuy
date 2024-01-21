@@ -29,7 +29,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     color: AppStyles.primaryColor,
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0 * 2),
+                    padding:
+                        const EdgeInsets.only(left: 16, right: 16, top: 28),
                     child: Column(
                       children: [
                         Text(auth.currentUser!.displayName!),
@@ -47,10 +48,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ],
               ),
-              const Positioned(
-                left: 80,
-                top: 150, // Sesuaikan nilai top sesuai kebutuhan
-                child: CircleAvatar(
+              Positioned(
+                left: MediaQuery.of(context).size.width / 2 - 90,
+                top: 140, // Sesuaikan nilai top sesuai kebutuhan
+                child: const CircleAvatar(
                   backgroundImage: NetworkImage(
                       'https://i.pinimg.com/564x/11/8a/2c/118a2c9d4fb6f9837c0a2cd42c3a5d7c.jpg'),
                   minRadius: 90,
@@ -62,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     return Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(8.0 * 2),
+          padding: const EdgeInsets.only(left: 16, right: 16, top: 36),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
