@@ -32,7 +32,7 @@ class _TouristSpotDetailPageState extends State<TouristSpotDetailPage> {
                   style: AppStyles.headingStyle,
                 ),
                 Text(
-                  widget.attraction.description,
+                  widget.attraction.overview,
                 )
               ],
             ),

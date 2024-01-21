@@ -1,16 +1,19 @@
 class TouristSpot {
-  String description;
+  String overview;
+  String sejarah;
+  String? jamOperasi;
+  double? tiket;
   String thumbnail;
-  List<String> images;
+  List<String>? images;
   String name;
   String category;
   String location;
   double rating;
 
   TouristSpot({
-    required this.description,
+    required this.overview,
+    required this.sejarah,
     required this.thumbnail,
-    required this.images,
     required this.name,
     required this.category,
     required this.location,
@@ -19,13 +22,13 @@ class TouristSpot {
 
   factory TouristSpot.fromFirestore(Map<String, dynamic> data) {
     return TouristSpot(
-      description: data['description'] ?? '',
-      thumbnail: data['Thumbnail'] ?? '',
-      images: List<String>.from(data['image'] ?? []),
-      name: data['name'] ?? '',
-      category: data['category'] ?? '',
-      location: data['location'] ?? '',
-      rating: data['rating'] ?? 0.0,
+      overview: (data['overview']).toString() ?? '',
+      sejarah: (data['sejarah'].toString()),
+      thumbnail: data['thumbnail'].toString() ?? '',
+      name: data['name'].toString() ?? '',
+      category: data['category'].toString() ?? '',
+      location: data['location'].toString() ?? '',
+      rating: double.parse(data['rating'].toString()) ?? 0.0,
     );
   }
 }

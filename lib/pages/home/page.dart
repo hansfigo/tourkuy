@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourkuy/common_widgets/bottom_navigation.dart';
-import 'package:tourkuy/pages/home/widgets/button_grid.dart';
+// import 'package:tourkuy/pages/home/widgets/button_grid.dart';
 import 'package:tourkuy/pages/home/widgets/horizontal_list.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -24,7 +24,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   height: 200.0,
                   width: double.infinity,
                   child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: EdgeInsets.only(left: 16.0, right: 16, top: 24),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +34,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           style: TextStyle(
                               fontSize: 42, fontWeight: FontWeight.w800),
                         ),
-                        Expanded(child: ButtonGrid()),
+                        // Expanded(child: ButtonGrid()),
                       ],
                     ),
                   )),

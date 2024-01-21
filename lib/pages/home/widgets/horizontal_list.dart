@@ -45,7 +45,7 @@ class AttractionList extends StatelessWidget {
     return Expanded(
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 6,
+        itemCount: attractionList.length,
         padding: const EdgeInsets.symmetric(horizontal: 8),
         itemBuilder: (context, index) {
           if (index == 0) {
@@ -54,7 +54,7 @@ class AttractionList extends StatelessWidget {
                 const SizedBox(
                   width: 16,
                 ),
-                CardExample(attraction: attractionList[2]),
+                CardExample(attraction: attractionList[index]),
               ],
             );
           } else {
@@ -63,7 +63,7 @@ class AttractionList extends StatelessWidget {
                 const SizedBox(
                   width: 16,
                 ),
-                CardExample(attraction: attractionList[2]),
+                CardExample(attraction: attractionList[index]),
               ],
             );
           }

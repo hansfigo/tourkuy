@@ -34,7 +34,7 @@ class CardExample extends StatelessWidget {
                     SizedBox(
                       height: 140,
                       child: Image.network(
-                        "https://images.unsplash.com/photo-1621155346337-1d19476ba7d6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGltYWdlfGVufDB8fDB8fHww",
+                        attraction.thumbnail,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -64,7 +64,7 @@ class CardExample extends StatelessWidget {
                       style: const TextStyle(
                           fontSize: 12, fontWeight: FontWeight.w600),
                     ),
-                    RatingStar(rating: attraction.rating),
+                    // RatingStar(rating: attraction.rating),
                     Text(
                       attraction.location,
                       style: const TextStyle(
