@@ -3,19 +3,10 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
-///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
 class DefaultFirebaseOptions {
-  static FirebaseOptions get currentPlatform {
+  FirebaseOptions get currentPlatform {
     if (kIsWeb) {
       return web;
     }
@@ -43,39 +34,47 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCp2uXX7jdeC_WCoMJlmn93hq9aUhCn2V4',
-    appId: '1:501915864006:web:4f884c68195be8a4ad80c7',
-    messagingSenderId: '501915864006',
-    projectId: 'tourkuy-b3db9',
-    authDomain: 'tourkuy-b3db9.firebaseapp.com',
-    storageBucket: 'tourkuy-b3db9.appspot.com',
-    measurementId: 'G-5X6RMTKFRR',
+  final apiKey = dotenv.env['FIREBASE_API_KEY']!;
+  final appId = dotenv.env['FIREBASE_APP_ID']!;
+  final messagingSenderId = dotenv.env['FIREBASE_MESSAGING_SENDER_ID']!;
+  final projectId = dotenv.env['FIREBASE_PROJECT_ID']!;
+  final authDomain = dotenv.env['FIREBASE_AUTH_DOMAIN']!;
+  final storageBucket = dotenv.env['FIREBASE_STORAGE_BUCKET']!;
+  final measurementId = dotenv.env['FIREBASE_MEASUREMENT_ID']!;
+
+  late FirebaseOptions web = FirebaseOptions(
+    apiKey: apiKey,
+    appId: appId,
+    messagingSenderId: messagingSenderId,
+    projectId: projectId,
+    authDomain: authDomain,
+    storageBucket: storageBucket,
+    measurementId: measurementId,
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDk9Ov5340oQ5BgnHlW49A9diPuH2-Eb3o',
-    appId: '1:501915864006:android:31e98de472ac6f21ad80c7',
-    messagingSenderId: '501915864006',
-    projectId: 'tourkuy-b3db9',
-    storageBucket: 'tourkuy-b3db9.appspot.com',
+  late FirebaseOptions android = FirebaseOptions(
+    apiKey: apiKey,
+    appId: appId,
+    messagingSenderId: messagingSenderId,
+    projectId: projectId,
+    storageBucket: storageBucket,
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA4N39B1S2j6pEOCU4JTurjN5CbwRaLFho',
-    appId: '1:501915864006:ios:5c1177a0021098b9ad80c7',
-    messagingSenderId: '501915864006',
-    projectId: 'tourkuy-b3db9',
-    storageBucket: 'tourkuy-b3db9.appspot.com',
+  late FirebaseOptions ios = FirebaseOptions(
+    apiKey: apiKey,
+    appId: appId,
+    messagingSenderId: messagingSenderId,
+    projectId: projectId,
+    storageBucket: storageBucket,
     iosBundleId: 'com.example.tourkuy',
   );
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyA4N39B1S2j6pEOCU4JTurjN5CbwRaLFho',
-    appId: '1:501915864006:ios:d185867df86c5951ad80c7',
-    messagingSenderId: '501915864006',
-    projectId: 'tourkuy-b3db9',
-    storageBucket: 'tourkuy-b3db9.appspot.com',
+  late FirebaseOptions macos = FirebaseOptions(
+    apiKey: apiKey,
+    appId: appId,
+    messagingSenderId: messagingSenderId,
+    projectId: projectId,
+    storageBucket: storageBucket,
     iosBundleId: 'com.example.tourkuy.RunnerTests',
   );
 }
